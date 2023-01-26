@@ -30,22 +30,20 @@ namespace Controllers
         private void Init()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
+            ChangeColor();
+            
+        }
+        public void ChangeColor()
+        {
             if (manager.IsColored)
             {
                 Object[] Materials = Resources.LoadAll("Materials");
                 int materialId = Random.Range(0, Materials.Length - 1);
 
-                _material = Resources.Load<Material>("Materials/"+materialId);
+                _material = Resources.Load<Material>("Materials/" + materialId);
                 _meshRenderer.material = _material;
             }
         }
-
-
-
-
-
-
-
 
         public void OnReleased()
         {

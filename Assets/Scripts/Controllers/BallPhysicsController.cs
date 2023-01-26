@@ -10,10 +10,12 @@ namespace Controllers
         #region Self Variables
 
         #region Serialized Variables
+        [SerializeField] private BallManager manager;
+
         #endregion
         #region Private Variables
-        private BallManager _manager;
         private PlayerData _data;
+        private Collider _collider;
 
         private bool _isNotStarted = true;
 
@@ -27,16 +29,26 @@ namespace Controllers
 
         private void Init()
         {
-            _manager = GetComponent<BallManager>();
-            //_data = _manager.GetData();
+            _collider = GetComponent<SphereCollider>();
+            if (manager.IsColored.Equals(true))
+            {
+                BecomeColorful();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Ball"))
+            if (other.CompareTag("ColorfulBall"))
             {
-                
+                manager.IsColored = true;
+                BecomeColorful();
             }
+        }
+        private void BecomeColorful()
+        {
+            gameObject.tag = "ColorfulBall";
+            _collider.enabled = false;
+            _collider.enabled = true;
         }
         public void OnReleased()
         {

@@ -15,18 +15,36 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
-        public bool IsColored = false;
 
         #endregion
 
         #region Serialized Variables
+        [SerializeField] private BallColorController colorController;
+        [SerializeField] private GameObject physicGameObject;
+        [SerializeField] private bool isColored;
 
         #endregion
 
         #region Private Variables
         private PlayerData _data;
-        #endregion
 
+        #endregion
+        #region Properties
+        
+
+        public bool IsColored
+        {
+            get { return isColored; }
+            set { 
+                    if (!isColored)
+                    {
+                        isColored = value;
+                        colorController.ChangeColor();
+                    }
+                }
+        }
+
+        #endregion
         #endregion
 
         private void Awake()
@@ -37,6 +55,7 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+  
         }
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
 
@@ -66,6 +85,7 @@ namespace Managers
         }
 
         #endregion
+
         private void OnPlay()
         {
 
