@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class PlayerManager : MonoBehaviour
+    public class PinManager : MonoBehaviour
     {
         #region Self Variables
 
@@ -25,7 +25,6 @@ namespace Managers
         #region Private Variables
         private PlayerData _data;
         private PinMovementController _movementController;
-        private List<int> _playerUpgradeList;
         #endregion
 
         #endregion
@@ -52,20 +51,12 @@ namespace Managers
         private void SubscribeEvents()
         {
             CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onPlay += _movementController.OnPlay;
-            CoreGameSignals.Instance.onLevelSuccessful += _movementController.OnLevelSuccess;
-            CoreGameSignals.Instance.onLevelFailed += _movementController.OnLevelFailed;
-            CoreGameSignals.Instance.onRestartLevel += _movementController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
         }
 
         private void UnsubscribeEvents()
         {
             CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
-            CoreGameSignals.Instance.onLevelSuccessful -= _movementController.OnLevelSuccess;
-            CoreGameSignals.Instance.onLevelFailed -= _movementController.OnLevelFailed;
-            CoreGameSignals.Instance.onRestartLevel -= _movementController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
         }
 
@@ -76,16 +67,15 @@ namespace Managers
         }
 
         #endregion
+        private void OnMouseDown()
+        {
+            Debug.Log("Clicked");
+            _movementController.OnClicked();
+        }
         private void OnPlay()
         {
+
         }
-
-        private void OnInitializePlayerUpgrades(List<int> upgradeList)
-        {
-            _playerUpgradeList = upgradeList;
-        }
-
-
         private void OnResetLevel()
         {
 
