@@ -5,15 +5,17 @@ using DG.Tweening;
 
 namespace Controllers
 {
-    public class PinMovementController : MonoBehaviour
+    public class BallColorController : MonoBehaviour
     {
         #region Self Variables
 
         #region Serialized Variables
+        [SerializeField] private BallManager manager;
+
         #endregion
         #region Private Variables
-        private PinManager _manager;
-        private PlayerData _data;
+        private Material _material;
+        private MeshRenderer _meshRenderer;
 
         private bool _isNotStarted = true;
 
@@ -27,23 +29,23 @@ namespace Controllers
 
         private void Init()
         {
-            _manager = GetComponent<PinManager>();
-            //_data = _manager.GetData();
+            _meshRenderer = GetComponent<MeshRenderer>();
+            if (manager.IsColored)
+            {
+                Object[] Materials = Resources.LoadAll("Materials");
+                int materialId = Random.Range(0, Materials.Length - 1);
+
+                _material = Resources.Load<Material>("Materials/"+materialId);
+                _meshRenderer.material = _material;
+            }
         }
 
 
 
 
 
-        private void Move()
-        {
-            transform.DOMove(transform.position + (transform.right * 15), 1f);
-        }
 
-        public void OnClicked()
-        {
-            Move();
-        }
+
 
         public void OnReleased()
         {
