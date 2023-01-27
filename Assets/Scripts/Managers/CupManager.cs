@@ -23,7 +23,9 @@ namespace Managers
         #endregion
 
         #region Private Variables
+        private CupMovementController _movementController;
         private int _currentCollectedBallCount = 0;
+        private float _initializePosY;
         #endregion
 
         #endregion
@@ -35,6 +37,8 @@ namespace Managers
 
         private void Init()
         {
+            _movementController = GetComponent<CupMovementController>();
+            _initializePosY = transform.localPosition.y;
         }
 
         #region Event Subscription
@@ -64,6 +68,8 @@ namespace Managers
             ++_currentCollectedBallCount;
             Debug.Log("tetiklendi");
             cupTextController.UpdateText(_currentCollectedBallCount * 100 / TotalBallCount);
+            _movementController.Move(_initializePosY - (float)_currentCollectedBallCount/TotalBallCount);
+
         }
 
         private void OnIncreaseTotalCarCount()

@@ -12,7 +12,7 @@ namespace Controllers
 
         #region Serialized Variables
         [SerializeField] private BallManager manager;
-
+        [SerializeField] private Rigidbody rig;
         #endregion
         #region Private Variables
         private PlayerData _data;
@@ -50,6 +50,8 @@ namespace Controllers
             }
             else if (other.CompareTag("Cup"))
             {
+                transform.parent = other.transform;
+                rig.constraints = RigidbodyConstraints.None;
                 BallSignals.Instance.onBallInTheCup?.Invoke();
 
             }

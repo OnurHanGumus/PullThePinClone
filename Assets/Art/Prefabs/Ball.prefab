@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1996857905337578506}
+  rig: {fileID: 1996857905337578505}
 --- !u!1 &1996857905238653717
 GameObject:
   m_ObjectHideFlags: 0
