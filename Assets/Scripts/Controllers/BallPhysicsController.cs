@@ -2,6 +2,7 @@ using Data.ValueObject;
 using Managers;
 using UnityEngine;
 using DG.Tweening;
+using Signals;
 
 namespace Controllers
 {
@@ -40,8 +41,17 @@ namespace Controllers
         {
             if (other.CompareTag("ColorfulBall"))
             {
+                if (manager.IsColored)
+                {
+                    return;
+                }
                 manager.IsColored = true;
                 BecomeColorful();
+            }
+            else if (other.CompareTag("Cup"))
+            {
+                BallSignals.Instance.onBallInTheCup?.Invoke();
+
             }
         }
         private void BecomeColorful()

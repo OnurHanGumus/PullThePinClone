@@ -10,41 +10,22 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class BallManager : MonoBehaviour
+    public class CupManager : MonoBehaviour
     {
         #region Self Variables
 
         #region Public Variables
-
+        public int TotalBallCount = 0;
         #endregion
 
         #region Serialized Variables
-        [SerializeField] private BallColorController colorController;
-        [SerializeField] private GameObject physicGameObject;
-        [SerializeField] private bool isColored;
-
+        [SerializeField] private CupTextController cupTextController;
         #endregion
 
         #region Private Variables
-        private PlayerData _data;
-
+        private int _currentCollectedBallCount = 0;
         #endregion
-        #region Properties
-        
 
-        public bool IsColored
-        {
-            get { return isColored; }
-            set { 
-                    if (!isColored)
-                    {
-                        isColored = value;
-                        colorController.ChangeColor();
-                    }
-                }
-        }
-
-        #endregion
         #endregion
 
         private void Awake()
@@ -54,10 +35,7 @@ namespace Managers
 
         private void Init()
         {
-            _data = GetData();
-  
         }
-        public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
 
         #region Event Subscription
 
@@ -70,14 +48,28 @@ namespace Managers
         {
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
+            BallSignals.Instance.onIncreaseBallCount += OnIncreaseTotalCarCount;
+            BallSignals.Instance.onBallInTheCup += OnIncreaseBallCount;
         }
 
         private void UnsubscribeEvents()
         {
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
+            BallSignals.Instance.onIncreaseBallCount -= OnIncreaseTotalCarCount;
+            BallSignals.Instance.onBallInTheCup -= OnIncreaseBallCount;
+        }
+        private void OnIncreaseBallCount()
+        {
+            ++_currentCollectedBallCount;
+            Debug.Log("tetiklendi");
+            cupTextController.UpdateText(_currentCollectedBallCount * 100 / TotalBallCount);
         }
 
+        private void OnIncreaseTotalCarCount()
+        {
+            ++TotalBallCount;
+        }
 
         private void OnDisable()
         {
@@ -85,14 +77,13 @@ namespace Managers
         }
 
         #endregion
-
         private void OnPlay()
         {
-            BallSignals.Instance.onIncreaseBallCount?.Invoke();
+
         }
         private void OnResetLevel()
         {
-
+            TotalBallCount = 0;
         }
     }
 }

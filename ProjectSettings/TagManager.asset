@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - ColorfulBall
+  - Cup
   layers:
   - Default
   - TransparentFX
