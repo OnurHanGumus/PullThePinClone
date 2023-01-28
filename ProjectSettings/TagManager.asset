@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - ColorfulBall
   - Cup
+  - Bomb
   layers:
   - Default
   - TransparentFX
