@@ -66,7 +66,6 @@ namespace Managers
         private void OnIncreaseBallCount()
         {
             ++_currentCollectedBallCount;
-            Debug.Log("tetiklendi");
             cupTextController.UpdateText(_currentCollectedBallCount * 100 / TotalBallCount);
             _movementController.Move(_initializePosY - (float)_currentCollectedBallCount/TotalBallCount);
 

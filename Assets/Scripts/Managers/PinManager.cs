@@ -69,7 +69,6 @@ namespace Managers
         #endregion
         private void OnMouseDown()
         {
-            Debug.Log("Clicked");
             _movementController.OnClicked();
         }
         private void OnPlay()

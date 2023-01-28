@@ -31,6 +31,7 @@ namespace Controllers
         private void Init()
         {
             _collider = GetComponent<SphereCollider>();
+
             if (manager.IsColored.Equals(true))
             {
                 BecomeColorful();
@@ -45,14 +46,23 @@ namespace Controllers
                 {
                     return;
                 }
+
                 manager.IsColored = true;
                 BecomeColorful();
             }
             else if (other.CompareTag("Cup"))
             {
-                transform.parent = other.transform;
-                rig.constraints = RigidbodyConstraints.None;
-                BallSignals.Instance.onBallInTheCup?.Invoke();
+                if (manager.IsColored)
+                {
+                    transform.parent.parent = other.transform;
+                    rig.constraints = RigidbodyConstraints.None;
+
+                    BallSignals.Instance.onBallInTheCup?.Invoke();
+                }
+                else
+                {
+                    transform.parent.gameObject.SetActive(false);
+                }
 
             }
         }
