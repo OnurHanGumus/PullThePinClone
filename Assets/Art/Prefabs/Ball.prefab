@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 1996857905337578505}
   - component: {fileID: 1996857905337578504}
   - component: {fileID: 1996857905337578506}
+  - component: {fileID: 5531487745657931123}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -216,7 +217,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996857905337578510}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 503f6c5666e9e2941b725d0e9e9df536, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -237,3 +238,16 @@ MonoBehaviour:
   colorController: {fileID: 1996857905238653714}
   physicGameObject: {fileID: 1605072966045944957}
   isColored: 0
+--- !u!114 &5531487745657931123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996857905337578510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55503208a6d9f6a48a8718b4661aec53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMoving: 0

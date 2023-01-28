@@ -61,7 +61,11 @@ namespace Controllers
                 }
                 else
                 {
-                    transform.parent.gameObject.SetActive(false);
+                    BallSignals.Instance.OnColorlessBallOnCup?.Invoke();
+                    rig.useGravity = false;
+                    rig.velocity = Vector3.zero;
+                    rig.angularVelocity = Vector3.zero;
+                    rig.position = new Vector3(0, 20, 0);
                 }
 
             }
