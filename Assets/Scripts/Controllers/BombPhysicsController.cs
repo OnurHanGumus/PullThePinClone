@@ -31,7 +31,7 @@ namespace Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Ball"))
+            if (other.CompareTag("Ball") || other.CompareTag("ColorfulBall"))
             {
                 if (_isTriggered)
                 {

@@ -3,6 +3,7 @@ using Managers;
 using UnityEngine;
 using DG.Tweening;
 using Signals;
+using System.Collections;
 
 namespace Controllers
 {
@@ -72,8 +73,9 @@ namespace Controllers
             else if (other.CompareTag("Explosion"))
             {
                 rig.constraints = RigidbodyConstraints.None;
-
                 rig.AddForce(Vector3.back * 10, ForceMode.Impulse);
+
+                StartCoroutine(FailWithDelay(1));
             }
         }
         private void BecomeColorful()
@@ -103,6 +105,11 @@ namespace Controllers
         public void OnRestartLevel()
         {
 
+        }
+        private IEnumerator FailWithDelay(int value)
+        {
+            yield return new WaitForSeconds(value);
+            CoreGameSignals.Instance.onLevelFailed?.Invoke();
         }
     }
 }
