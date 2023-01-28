@@ -8,6 +8,8 @@ TagManager:
   - ColorfulBall
   - Cup
   - Bomb
+  - Missile
+  - Explosion
   layers:
   - Default
   - TransparentFX

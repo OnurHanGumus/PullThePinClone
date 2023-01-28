@@ -68,7 +68,12 @@ namespace Controllers
                     rig.angularVelocity = Vector3.zero;
                     rig.position = new Vector3(50, 20, 0);
                 }
+            }
+            else if (other.CompareTag("Explosion"))
+            {
+                rig.constraints = RigidbodyConstraints.None;
 
+                rig.AddForce(Vector3.back * 10, ForceMode.Impulse);
             }
         }
         private void BecomeColorful()
