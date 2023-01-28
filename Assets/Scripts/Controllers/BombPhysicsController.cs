@@ -3,7 +3,7 @@ using Managers;
 using UnityEngine;
 using DG.Tweening;
 using Signals;
-
+using Enums;
 
 namespace Controllers
 {
@@ -52,7 +52,8 @@ namespace Controllers
 
         private void Explode()
         {
-            Debug.Log("Boom Particle");
+            PoolSignals.Instance.onGetObjectOnPosition?.Invoke(PoolEnums.BombParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
+            transform.parent.gameObject.SetActive(false);
         }
 
         public void OnReleased()
