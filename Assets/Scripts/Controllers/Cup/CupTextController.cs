@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Signals;
 
 public class CupTextController : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class CupTextController : MonoBehaviour
     public void UpdateText(int newValue)
     {
         percentageText.text = newValue.ToString() + "%";
+        if (newValue.Equals(100))
+        {
+            CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
+        }
     }
 
 }
