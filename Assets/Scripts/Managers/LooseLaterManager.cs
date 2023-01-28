@@ -124,6 +124,7 @@ namespace Managers
         {
             ballMovementControllers.Clear();
             StopAllCoroutines();
+            _isCheckStarted = false;
         }
     }
 }

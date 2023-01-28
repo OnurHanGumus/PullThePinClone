@@ -89,6 +89,7 @@ namespace Managers
         private void OnResetLevel()
         {
             TotalBallCount = 0;
+            _currentCollectedBallCount = 0;
         }
     }
 }

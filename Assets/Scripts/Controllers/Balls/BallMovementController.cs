@@ -36,7 +36,6 @@ namespace Controllers
         {
             _rig = GetComponent<Rigidbody>();
             _manager = GetComponent<BallManager>();
-            BallSignals.Instance.onAddToLooseCheck?.Invoke(this);
         }
         private void Update()
         {

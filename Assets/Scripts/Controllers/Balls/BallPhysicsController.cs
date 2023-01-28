@@ -63,9 +63,10 @@ namespace Controllers
                 {
                     BallSignals.Instance.OnColorlessBallOnCup?.Invoke();
                     rig.useGravity = false;
+                    rig.isKinematic = true;
                     rig.velocity = Vector3.zero;
                     rig.angularVelocity = Vector3.zero;
-                    rig.position = new Vector3(0, 20, 0);
+                    rig.position = new Vector3(50, 20, 0);
                 }
 
             }

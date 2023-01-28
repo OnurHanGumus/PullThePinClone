@@ -27,6 +27,7 @@ namespace Managers
 
         #region Private Variables
         private PlayerData _data;
+        private BallMovementController _movementController;
 
         #endregion
         #region Properties
@@ -55,6 +56,7 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+            _movementController = GetComponent<BallMovementController>();
   
         }
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
@@ -89,6 +91,8 @@ namespace Managers
         private void OnPlay()
         {
             BallSignals.Instance.onIncreaseBallCount?.Invoke();
+            BallSignals.Instance.onAddToLooseCheck?.Invoke(_movementController);
+
         }
         private void OnResetLevel()
         {
