@@ -5,6 +5,7 @@ using DG.Tweening;
 using Signals;
 using System.Collections;
 using Data.UnityObject;
+using Enums;
 
 namespace Controllers
 {
@@ -61,6 +62,7 @@ namespace Controllers
                     rig.constraints = RigidbodyConstraints.None;
 
                     BallSignals.Instance.onBallInTheCup?.Invoke();
+                    AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.BallInTheCup);
                 }
                 else
                 {
@@ -72,6 +74,8 @@ namespace Controllers
                     rig.velocity = Vector3.zero;
                     rig.angularVelocity = Vector3.zero;
                     rig.position = new Vector3(50, 20, 0);
+                    AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.ColorlessBallInTheCup);
+
                 }
                 manager.BallInTheCup();
             }
@@ -88,6 +92,8 @@ namespace Controllers
             gameObject.tag = "ColorfulBall";
             _collider.enabled = false;
             _collider.enabled = true;
+
+            AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.ColorChange);
         }
        
         public void OnReleased()
