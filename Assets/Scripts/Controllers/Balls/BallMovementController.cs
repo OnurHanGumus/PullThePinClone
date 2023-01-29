@@ -11,6 +11,8 @@ namespace Controllers
         #region Self Variables
         #region Public Variables
         public bool IsMoving = false;
+        public bool IsInTheCup = false;
+
 
         #endregion
         #region Serialized Variables
@@ -39,8 +41,15 @@ namespace Controllers
         }
         private void Update()
         {
+            if (IsInTheCup)
+            {
+                return;
+            }
+
             IsMoving = _rig.velocity.magnitude > 0f;
         }
+
+
         public void OnReleased()
         {
         }
@@ -49,8 +58,6 @@ namespace Controllers
         public void OnPlay()
         {
             _isNotStarted = false;
-
-
         }
         public void OnLevelFailed()
         {

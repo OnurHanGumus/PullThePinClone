@@ -92,29 +92,33 @@ namespace Managers
 
         private IEnumerator CheckMoveStates()
         {
-            yield return new WaitForSeconds(1f);
-
-            foreach (var i in ballMovementControllers)
+            while (_isCheckStarted)
             {
-                if (i == null)
+                int indeks = 0;
+                yield return new WaitForSeconds(1f);
+
+                foreach (var i in ballMovementControllers)
                 {
-                    continue;
+                    if (i == null)
+                    {
+                        continue;
+                    }
+                    if (i.IsMoving == false)
+                    {
+                        ++indeks;
+                        if (indeks == ballMovementControllers.Count)
+                        {
+                            CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                            _isCheckStarted = false;
+                        }
+                    }
                 }
-                if (i.IsMoving == true)
-                {
-                    //wait
-                }
-                else
+
+                if (ballMovementControllers.Count == 0)
                 {
                     CoreGameSignals.Instance.onLevelFailed?.Invoke();
                 }
             }
-            if (ballMovementControllers.Count == 0)
-            {
-                CoreGameSignals.Instance.onLevelFailed?.Invoke();
-            }
-
-            StartCoroutine(CheckMoveStates());
         }
         private void OnPlay()
         {

@@ -13,5 +13,8 @@ namespace Signals
         public UnityAction<bool> onCloseSuccessfulPanel;
 
         public UnityAction<ScoreTypeEnums, int> onSetChangedText;
+
+        public UnityAction<string> onSetTip = delegate { };
+        public Func<string> onGetTip = delegate { return " "; };
     }
 }

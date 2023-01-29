@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Signals;
 using System.Collections;
+using Data.UnityObject;
 
 namespace Controllers
 {
@@ -16,7 +17,7 @@ namespace Controllers
         [SerializeField] private Rigidbody rig;
         #endregion
         #region Private Variables
-        private PlayerData _data;
+        private TipData _tipData;
         private Collider _collider;
 
         private bool _isNotStarted = true;
@@ -32,6 +33,7 @@ namespace Controllers
         private void Init()
         {
             _collider = GetComponent<SphereCollider>();
+            _tipData = manager.GetTipData();
 
             if (manager.IsColored.Equals(true))
             {
@@ -71,6 +73,7 @@ namespace Controllers
                     rig.angularVelocity = Vector3.zero;
                     rig.position = new Vector3(50, 20, 0);
                 }
+                manager.BallInTheCup();
             }
             else if (other.CompareTag("Explosion"))
             {
@@ -86,6 +89,7 @@ namespace Controllers
             _collider.enabled = false;
             _collider.enabled = true;
         }
+       
         public void OnReleased()
         {
         }
@@ -111,6 +115,8 @@ namespace Controllers
         private IEnumerator FailWithDelay(int value)
         {
             yield return new WaitForSeconds(value);
+            UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
+
             CoreGameSignals.Instance.onLevelFailed?.Invoke();
         }
     }

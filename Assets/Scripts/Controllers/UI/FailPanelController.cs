@@ -8,16 +8,17 @@ using System;
 using Data.UnityObject;
 using DG.Tweening;
 
-public class LevelPanelController : MonoBehaviour
+public class FailPanelController : MonoBehaviour
 {
     #region Self Variables
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI tipText;
     #endregion
     #region Private Variables
     private int _level = 0;
+    private string _tip;
     #endregion
     #endregion
     private void Awake()
@@ -30,19 +31,14 @@ public class LevelPanelController : MonoBehaviour
 
     }
 
-    public void OnPlay()
+    public void OnLevelFailed()
     {
-        _level = LevelSignals.Instance.onGetLevelId();
-        UpdateText();
+        _tip = UISignals.Instance.onGetTip();
+        tipText.text = _tip;
+        Debug.Log(_tip);
     }
-
-    public void UpdateText()
-    {
-        levelText.text = "Level " + _level;
-    }
-    
     public void OnRestartLevel()
     {
-        levelText.text = 0.ToString();
+        tipText.text = "Fail.";
     }
 }

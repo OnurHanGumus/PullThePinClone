@@ -18,10 +18,12 @@ namespace Managers
         [SerializeField] private GameOverPanelController gameOverPanelController;
         [SerializeField] private LevelPanelController levelPanelController;
         [SerializeField] private HighScorePanelController highScorePanelController;
+        [SerializeField] private FailPanelController failPanelController;
 
         #endregion
         #region Private Variables
         private UIData _data;
+        private string _tip;
 
         #endregion
         #endregion
@@ -47,9 +49,12 @@ namespace Managers
         {
             UISignals.Instance.onOpenPanel += OnOpenPanel;
             UISignals.Instance.onClosePanel += OnClosePanel;
+            UISignals.Instance.onGetTip += OnGetTip;
+            UISignals.Instance.onSetTip += OnSetTip;
             CoreGameSignals.Instance.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onLevelFailed += OnLevelFailed;
+            CoreGameSignals.Instance.onLevelFailed += failPanelController.OnLevelFailed;
             CoreGameSignals.Instance.onLevelSuccessful += OnLevelSuccessful;
             CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
@@ -59,9 +64,12 @@ namespace Managers
         {
             UISignals.Instance.onOpenPanel -= OnOpenPanel;
             UISignals.Instance.onClosePanel -= OnClosePanel;
+            UISignals.Instance.onGetTip -= OnGetTip;
+            UISignals.Instance.onSetTip -= OnSetTip;
             CoreGameSignals.Instance.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= OnLevelFailed;
+            CoreGameSignals.Instance.onLevelFailed -= failPanelController.OnLevelFailed;
             CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
             CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
@@ -101,6 +109,15 @@ namespace Managers
         {
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.LevelPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.WinPanel);
+        }
+
+        private string OnGetTip()
+        {
+            return _tip;
+        }
+        private void OnSetTip(string tip)
+        {
+            _tip = tip;
         }
 
         public void Play()

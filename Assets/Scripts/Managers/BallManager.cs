@@ -21,6 +21,7 @@ namespace Managers
         #region Serialized Variables
         [SerializeField] private BallColorController colorController;
         [SerializeField] private GameObject physicGameObject;
+        [SerializeField] private BallPhysicsController physicConroller;
         [SerializeField] private bool isColored;
 
         #endregion
@@ -60,6 +61,8 @@ namespace Managers
   
         }
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        public TipData GetTipData() => Resources.Load<CD_Tip>("Data/CD_Tip").Data;
+
 
         #region Event Subscription
 
@@ -87,13 +90,19 @@ namespace Managers
         }
 
         #endregion
-
+        public void BallInTheCup()
+        {
+            _movementController.IsInTheCup = true;
+            _movementController.IsMoving = false;
+        }
         private void OnPlay()
         {
             BallSignals.Instance.onIncreaseBallCount?.Invoke();
             BallSignals.Instance.onAddToLooseCheck?.Invoke(_movementController);
 
         }
+
+        
         private void OnResetLevel()
         {
 

@@ -79,6 +79,6 @@ public class GameOverPanelController : MonoBehaviour
     }
     public void Open()
     {
-        CoreGameSignals.Instance.onLevelFailed?.Invoke();
+        //CoreGameSignals.Instance.onLevelFailed?.Invoke();
     }
 }
