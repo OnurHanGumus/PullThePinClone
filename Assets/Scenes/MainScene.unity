@@ -2464,8 +2464,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6764988688178875218, guid: 129844d4f927a42419e39491e1bf039e, type: 3}
   evaporationPrefab: {fileID: 4939825127301487210, guid: 2c4ae81ba8aa3d14191c58d2790c0df7, type: 3}
+  confettiPrefab: {fileID: 9050180707360040251, guid: dce6ce4e0741bf64286fc96359bb6b56, type: 3}
   amountExplosion: 3
   amountEvaporation: 10
+  amountConfetti: 2
 --- !u!1 &749374685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,7 +5814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 303}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 402, y: 183}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2118853373

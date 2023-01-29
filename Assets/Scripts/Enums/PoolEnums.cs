@@ -7,5 +7,6 @@ namespace Enums
     {
         BombParticle,
         EvaporationParticle,
+        ConfettiParticle,
     }
 }

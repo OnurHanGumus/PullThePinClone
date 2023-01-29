@@ -10,12 +10,12 @@ public class PoolManager : MonoBehaviour
 
     #region Serialized Variables
 
-    [SerializeField] private GameObject explosionPrefab, evaporationPrefab;
+    [SerializeField] private GameObject explosionPrefab, evaporationPrefab, confettiPrefab;
 
     [SerializeField] private Dictionary<PoolEnums, List<GameObject>> poolDictionary;
 
 
-    [SerializeField] private int amountExplosion = 3, amountEvaporation = 10;
+    [SerializeField] private int amountExplosion = 3, amountEvaporation = 10, amountConfetti = 2;
 
 
 
@@ -34,6 +34,7 @@ public class PoolManager : MonoBehaviour
         poolDictionary = new Dictionary<PoolEnums, List<GameObject>>();
         InitializePool(PoolEnums.BombParticle, explosionPrefab, amountExplosion);
         InitializePool(PoolEnums.EvaporationParticle, evaporationPrefab, amountEvaporation);
+        InitializePool(PoolEnums.ConfettiParticle, confettiPrefab, amountConfetti);
     }
 
 
@@ -121,6 +122,7 @@ public class PoolManager : MonoBehaviour
         //reset
         ResetPool(PoolEnums.BombParticle);
         ResetPool(PoolEnums.EvaporationParticle);
+        ResetPool(PoolEnums.ConfettiParticle);
     }
 
     private void ResetPool(PoolEnums type)

@@ -25,6 +25,7 @@ public class CupTextController : MonoBehaviour
         if (newValue.Equals(100))
         {
             CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
+            PoolSignals.Instance.onGetObjectOnPosition?.Invoke(Enums.PoolEnums.ConfettiParticle, transform.position);
         }
     }
 
