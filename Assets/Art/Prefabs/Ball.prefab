@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorController: {fileID: 1996857905238653714}
   physicGameObject: {fileID: 1605072966045944957}
+  physicConroller: {fileID: 1687411495263832290}
   isColored: 0
 --- !u!114 &5531487745657931123
 MonoBehaviour:
@@ -251,3 +252,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMoving: 0
+  IsInTheCup: 0
