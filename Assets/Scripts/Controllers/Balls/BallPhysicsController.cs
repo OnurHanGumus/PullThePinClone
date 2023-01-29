@@ -115,7 +115,7 @@ namespace Controllers
         private IEnumerator FailWithDelay(int value)
         {
             yield return new WaitForSeconds(value);
-            UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
+            UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[0]);
 
             CoreGameSignals.Instance.onLevelFailed?.Invoke();
         }

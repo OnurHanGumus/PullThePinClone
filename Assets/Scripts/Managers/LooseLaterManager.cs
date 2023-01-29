@@ -26,10 +26,13 @@ namespace Managers
 
         #region Private Variables
         private PlayerData _data;
+        private TipData _tipData;
+
         private bool _isCheckStarted = false;
         #endregion
 
         #endregion
+        public TipData GetTipData() => Resources.Load<CD_Tip>("Data/CD_Tip").Data;
 
         private void Awake()
         {
@@ -39,6 +42,8 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+            _tipData = GetTipData();
+
         }
         public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
 
@@ -108,6 +113,7 @@ namespace Managers
                         ++indeks;
                         if (indeks == ballMovementControllers.Count)
                         {
+                            UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
                             CoreGameSignals.Instance.onLevelFailed?.Invoke();
                             _isCheckStarted = false;
                         }
@@ -116,6 +122,7 @@ namespace Managers
 
                 if (ballMovementControllers.Count == 0)
                 {
+                    UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
                     CoreGameSignals.Instance.onLevelFailed?.Invoke();
                 }
             }
