@@ -62,6 +62,8 @@ namespace Controllers
                 }
                 else
                 {
+                    PoolSignals.Instance.onGetObjectOnPosition?.Invoke(Enums.PoolEnums.EvaporationParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z -1));
+
                     BallSignals.Instance.OnColorlessBallOnCup?.Invoke();
                     rig.useGravity = false;
                     rig.isKinematic = true;

@@ -6,5 +6,6 @@ namespace Enums
     public enum PoolEnums
     {
         BombParticle,
+        EvaporationParticle,
     }
 }
