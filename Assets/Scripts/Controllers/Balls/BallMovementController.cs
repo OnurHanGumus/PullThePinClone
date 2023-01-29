@@ -46,7 +46,7 @@ namespace Controllers
                 return;
             }
 
-            IsMoving = _rig.velocity.magnitude > 0f;
+            IsMoving = _rig.velocity.magnitude > 0.1f;
         }
 
 
