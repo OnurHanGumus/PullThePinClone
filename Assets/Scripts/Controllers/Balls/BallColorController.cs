@@ -14,7 +14,6 @@ namespace Controllers
 
         #endregion
         #region Private Variables
-        private Material _material;
         private MeshRenderer _meshRenderer;
 
         private bool _isNotStarted = true;
@@ -30,18 +29,18 @@ namespace Controllers
         private void Init()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
-            ChangeColor();
             
+        }
+        private void Start()
+        {
+            ChangeColor();
         }
         public void ChangeColor()
         {
             if (manager.IsColored)
             {
-                Object[] Materials = Resources.LoadAll("Materials");
-                int materialId = Random.Range(0, Materials.Length - 1);
-
-                _material = Resources.Load<Material>("Materials/" + materialId);
-                _meshRenderer.material = _material;
+                int materialId = Random.Range(0, manager.Data.Colors.Count - 1);
+                _meshRenderer.material.color = manager.Data.Colors[materialId];
             }
         }
 

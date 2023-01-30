@@ -34,8 +34,6 @@ public class FailPanelController : MonoBehaviour
     public void OnLevelFailed()
     {
         _tip = UISignals.Instance.onGetTip();
-        tipText.text = _tip;
-        Debug.Log(_tip);
     }
     public void OnRestartLevel()
     {

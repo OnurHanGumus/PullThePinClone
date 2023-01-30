@@ -18,7 +18,6 @@ namespace Controllers
         [SerializeField] private Rigidbody rig;
         #endregion
         #region Private Variables
-        private TipData _tipData;
         private Collider _collider;
 
         private bool _isNotStarted = true;
@@ -34,7 +33,6 @@ namespace Controllers
         private void Init()
         {
             _collider = GetComponent<SphereCollider>();
-            _tipData = manager.GetTipData();
 
             if (manager.IsColored.Equals(true))
             {
@@ -83,8 +81,6 @@ namespace Controllers
             {
                 rig.constraints = RigidbodyConstraints.None;
                 rig.AddForce(Vector3.back * 10, ForceMode.Impulse);
-
-                StartCoroutine(FailWithDelay(1));
             }
         }
         private void BecomeColorful()
@@ -117,13 +113,6 @@ namespace Controllers
         public void OnRestartLevel()
         {
 
-        }
-        private IEnumerator FailWithDelay(int value)
-        {
-            yield return new WaitForSeconds(value);
-            UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[0]);
-
-            CoreGameSignals.Instance.onLevelFailed?.Invoke();
         }
     }
 }

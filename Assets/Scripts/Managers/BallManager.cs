@@ -15,6 +15,7 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
+        public BallData Data;
 
         #endregion
 
@@ -27,7 +28,6 @@ namespace Managers
         #endregion
 
         #region Private Variables
-        private PlayerData _data;
         private BallMovementController _movementController;
 
         #endregion
@@ -56,11 +56,11 @@ namespace Managers
 
         private void Init()
         {
-            _data = GetData();
+            Data = GetData();
             _movementController = GetComponent<BallMovementController>();
   
         }
-        public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        public BallData GetData() => Resources.Load<CD_Ball>("Data/CD_Ball").Data;
         public TipData GetTipData() => Resources.Load<CD_Tip>("Data/CD_Tip").Data;
 
 

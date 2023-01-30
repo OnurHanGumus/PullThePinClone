@@ -115,6 +115,8 @@ namespace Managers
                         {
                             UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
                             CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                            AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.Lose);
+
                             _isCheckStarted = false;
                         }
                     }
@@ -123,6 +125,7 @@ namespace Managers
                 if (ballMovementControllers.Count == 0)
                 {
                     UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[1]);
+                    AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.Lose);
                     CoreGameSignals.Instance.onLevelFailed?.Invoke();
                 }
             }
