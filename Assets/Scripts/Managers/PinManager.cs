@@ -70,6 +70,7 @@ namespace Managers
         private void OnMouseDown()
         {
             _movementController.OnClicked();
+            PinSignals.Instance.onPinHasPulled?.Invoke();
             AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.PullThePin);
         }
         private void OnPlay()
