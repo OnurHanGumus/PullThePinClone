@@ -38,11 +38,11 @@ public class LevelPanelController : MonoBehaviour
 
     public void UpdateText()
     {
-        levelText.text = "Level " + _level;
+        levelText.text = "Level " + (_level + 1);
     }
     
     public void OnRestartLevel()
     {
-        levelText.text = 0.ToString();
+        levelText.text = "Level " + (_level + 1);
     }
 }

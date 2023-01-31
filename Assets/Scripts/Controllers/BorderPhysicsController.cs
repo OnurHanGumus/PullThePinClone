@@ -50,7 +50,6 @@ namespace Controllers
         {
             yield return new WaitForSeconds(value);
             UISignals.Instance.onSetTip?.Invoke(_tipData.TipList[2]);
-
             CoreGameSignals.Instance.onLevelFailed?.Invoke();
             AudioSignals.Instance.onPlaySound?.Invoke(SoundEnums.Lose);
         }
