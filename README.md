@@ -7,5 +7,6 @@ Solid prensiplerine uygun olarak hazırladığım bu projede ayrıca aşağıdak
 2.  Command Pattern
 3.  Object Pooling
 
-# Images
-![v1](Assets/Videos/movie_003_7.mp4)
+
+https://user-images.githubusercontent.com/71465720/215956815-ba78d09a-1935-4a1e-882f-bf53ee043c82.mp4
+
